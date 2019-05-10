@@ -16,10 +16,10 @@ public class Customer {
 
     @NotNull
     @Size(min = 1, max = 20)
-    private String firstName;
+    private String first_name;
     @NotNull
     @Size(min = 1, max = 20)
-    private String lastName;
+    private String last_name;
     private String address;
 
     private String email;
@@ -36,20 +36,21 @@ public class Customer {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getAddress() {
@@ -97,13 +98,28 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstName='" + first_name + '\'' +
+                ", lastName='" + last_name + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", username='" + username + '\'' +
                 ", password='*********'" +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Customer customer = (Customer) o;
+
+        return id == customer.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
 }
