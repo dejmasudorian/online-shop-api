@@ -36,17 +36,18 @@ public class CartService {
     public Cart addProductsToCart(SaveCartRequest request) throws ResourceNotFoundException {
         LOGGER.info("Adding products to cart: {}", request);
 
-        Customer customer = customerService.getCustomer(
-                request.getCustomerId());
+        Customer customer =
+                customerService.getCustomer(request.getCustomerId());
 
         Cart cart = new Cart();
         cart.setCustomer(customer);
 
-        for (Long id:request.getProductIds()){
-            //could be done more efficiently with a getAllProductsByIds
+        for (Long id : request.getProductIds()) {
+            // could be done more efficiently with a getAllProductsByIds
             Product product = productService.getProduct(id);
             cart.addProduct(product);
         }
+
         return cartRepository.save(cart);
     }
 

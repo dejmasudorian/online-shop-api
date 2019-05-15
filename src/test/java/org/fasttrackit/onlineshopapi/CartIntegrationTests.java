@@ -16,11 +16,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Collections;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,16 +27,16 @@ public class CartIntegrationTests {
 
     @Autowired
     private CartService cartService;
+
     @Autowired
     private ProductSteps productSteps;
+
     @Autowired
     private CustomerSteps customerSteps;
 
     @Test
     public void testAddProductsToCart_whenValidRequest_thenReturnCart() throws ResourceNotFoundException {
-
         Product product = productSteps.createProduct();
-
         Customer customer = customerSteps.createCustomer();
 
         SaveCartRequest request = new SaveCartRequest();
@@ -51,7 +50,6 @@ public class CartIntegrationTests {
 
         assertThat(cart.getProducts(), notNullValue());
         assertThat(cart.getProducts(), hasSize(1));
-
     }
 
 }
